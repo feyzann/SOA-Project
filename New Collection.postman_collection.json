@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "c3157e8a-019a-432f-b8b3-ac84abb13cd2",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15996719",
+		"_collection_link": "https://cloudy-shuttle-169975.postman.co/workspace/yerkap~6147a597-fe95-4f99-bb47-cb776d294cce/collection/15996719-c3157e8a-019a-432f-b8b3-ac84abb13cd2?action=share&source=collection_link&creator=15996719"
+	},
+	"item": [
+		{
+			"name": "GetById",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n                  xmlns:pro=\"http://www.example.org/product\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <pro:getProductByIdRequest>\r\n         <pro:id>19</pro:id>\r\n      </pro:getProductByIdRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ExchangeApi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/exchange-rate",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"exchange-rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"3\",\r\n    \"price\": 39.99,\r\n    \"stock\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/add-product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"add-product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

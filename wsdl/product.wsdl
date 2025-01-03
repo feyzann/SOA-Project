@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:tns="http://www.example.org/product"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             name="ProductService"
+             targetNamespace="http://www.example.org/product">
+  
+  <!-- Types Section -->
+  <types>
+    <xsd:schema targetNamespace="http://www.example.org/product">
+      <xsd:element name="getProductByIdRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="getProductByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="product" type="tns:ProductType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:complexType name="ProductType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="price" type="xsd:decimal"/>
+          <xsd:element name="stock" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+
+  <!-- Message Section -->
+  <message name="getProductByIdRequest">
+    <part name="parameters" element="tns:getProductByIdRequest"/>
+  </message>
+
+  <message name="getProductByIdResponse">
+    <part name="parameters" element="tns:getProductByIdResponse"/>
+  </message>
+
+  <!-- PortType Section -->
+  <portType name="ProductServicePortType">
+    <operation name="getProductById">
+      <input message="tns:getProductByIdRequest"/>
+      <output message="tns:getProductByIdResponse"/>
+    </operation>
+  </portType>
+
+  <!-- Binding Section -->
+  <binding name="ProductServiceBinding" type="tns:ProductServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getProductById">
+      <soap:operation soapAction="urn:getProductById"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <!-- Service Section -->
+  <service name="ProductService">
+    <port name="ProductServicePort" binding="tns:ProductServiceBinding">
+      <soap:address location="http://localhost:8000/product"/>
+    </port>
+  </service>
+</definitions>
